@@ -11,7 +11,9 @@ import lombok.*;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Builder
 @Entity
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = HeroeHasPoder.class)
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id", scope = HeroeHasPoder.class)
 public class HeroeHasPoder {
 
     @Id
@@ -25,4 +27,5 @@ public class HeroeHasPoder {
 
     @ManyToOne
     private Poder poder;
+
 }

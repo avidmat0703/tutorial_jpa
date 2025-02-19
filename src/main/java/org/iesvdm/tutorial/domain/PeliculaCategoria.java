@@ -1,9 +1,8 @@
 package org.iesvdm.tutorial.domain;
 
+
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -12,17 +11,19 @@ import java.time.LocalDate;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 
 @Entity
-public class Tarjeta {
+public class PeliculaCategoria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
 
-    private String numero;
-    private LocalDate fechaCaducidad;
+    @ManyToOne
+    private Categoria categoria;
 
-    @OneToOne
-    private Socio socio;
+    @ManyToOne
+    //Se rompe el bucle hacia pelicula
+    @ToString.Exclude
+    private Pelicula pelicula;
 
 }

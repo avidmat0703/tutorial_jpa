@@ -2,6 +2,11 @@ package org.iesvdm.tutorial.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.iesvdm.tutorial.domain.Pelicula;
+
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -10,23 +15,18 @@ import lombok.*;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 
 @Entity
-public class Socio {
-
+public class Actor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
 
-    @Column(length = 9, unique = true)
-    private String nif;
-
-    @Column(length = 30)
     private String nombre;
-
-    @Column(length = 120)
     private String apellidos;
+    private LocalDateTime ultimaActualizacion;
 
-    @OneToOne(mappedBy = "socio")
-    private Tarjeta tarjeta;
+    @ManyToMany
+    @Builder.Default
+    private Set<Pelicula> peliculas = new HashSet<>();
 
 }
